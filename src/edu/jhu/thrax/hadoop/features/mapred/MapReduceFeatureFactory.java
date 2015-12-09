@@ -12,6 +12,10 @@ public class MapReduceFeatureFactory {
       return new SourcePhraseGivenTargetFeature();
     else if (name.equals(TargetPhraseGivenSourceFeature.NAME))
       return new TargetPhraseGivenSourceFeature();
+    else if (name.equals(GoodTuringSmoothedTargetPhraseGivenSourceFeature.NAME))
+        return new GoodTuringSmoothedTargetPhraseGivenSourceFeature();
+    else if (name.equals(GoodTuringSmoothedSourcePhraseGivenTargetFeature.NAME))
+      return new GoodTuringSmoothedSourcePhraseGivenTargetFeature();
     else if (name.equals(SourcePhraseGivenLHSFeature.NAME))
       return new SourcePhraseGivenLHSFeature();
     else if (name.equals(LhsGivenSourcePhraseFeature.NAME))

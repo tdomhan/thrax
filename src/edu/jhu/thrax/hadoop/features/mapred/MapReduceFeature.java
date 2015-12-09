@@ -64,7 +64,8 @@ public abstract class MapReduceFeature implements Feature, ThraxJob {
 
     setMapOutputFormat(job);
     
-    int num_reducers = conf.getInt("thrax.reducers", conf.getInt("mapreduce.job.reduces", DefaultValues.DEFAULT_NUM_REDUCERS));
+    int num_reducers = conf.getInt("thrax.reducers",
+        conf.getInt("mapreduce.job.reduces", DefaultValues.DEFAULT_NUM_REDUCERS));
     job.setNumReduceTasks(num_reducers);
 
     FileInputFormat.setInputPaths(job, new Path(conf.get("thrax.work-dir") + "rules"));

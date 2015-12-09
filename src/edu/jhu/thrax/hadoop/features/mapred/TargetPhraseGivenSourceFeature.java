@@ -51,7 +51,7 @@ public class TargetPhraseGivenSourceFeature extends MapReduceFeature {
     return Reduce.class;
   }
 
-  private static class Map extends Mapper<RuleWritable, Annotation, RuleWritable, IntWritable> {
+  protected static class Map extends Mapper<RuleWritable, Annotation, RuleWritable, IntWritable> {
 
     protected void setup(Context context) throws IOException, InterruptedException {
       Configuration conf = context.getConfiguration();
@@ -108,7 +108,7 @@ public class TargetPhraseGivenSourceFeature extends MapReduceFeature {
 
   }
 
-  public static class Comparator extends WritableComparator {
+  protected static class Comparator extends WritableComparator {
 
     private static final WritableComparator PARRAY_COMP = new PrimitiveArrayMarginalComparator();
     private static final FieldComparator SOURCE_COMP = new FieldComparator(0, PARRAY_COMP);
