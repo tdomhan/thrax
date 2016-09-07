@@ -69,8 +69,7 @@ public class CountOfRuleCountsEstimationJob implements ThraxJob {
     job.setOutputKeyClass(IntWritable.class);
     job.setOutputValueClass(IntWritable.class);
     
-    int num_reducers = conf.getInt("thrax.reducers", SINGLE_REDUCER);
-    job.setNumReduceTasks(num_reducers);
+    job.setNumReduceTasks(SINGLE_REDUCER);
 
     FileInputFormat.setInputPaths(job, new Path(conf.get("thrax.work-dir") + "rules"));
     FileOutputFormat.setOutputPath(job, new Path(conf.get("thrax.work-dir") + name));
