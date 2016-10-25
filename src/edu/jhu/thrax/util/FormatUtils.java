@@ -99,7 +99,10 @@ public class FormatUtils {
   public static Text ruleToText(RuleWritable r, Map<String, Writable> fs, boolean label,
       boolean sparse) {
     if (r == null) throw new IllegalArgumentException("Cannot convert a null rule to text.");
+    
+    // Both alignment and count are features that are handled specially
     String alignment = null;    
+    int ruleCount = 0;
     StringBuilder sb = new StringBuilder();
     sb.append(Vocabulary.word(r.lhs));
     sb.append(DELIM);
@@ -123,9 +126,13 @@ public class FormatUtils {
 
     sb.append(DELIM);
     for (String t : fs.keySet()) {
+      System.err.println("WRITING FEATURE: " + t);
       String score;
       Writable val = fs.get(t);
-      if (val instanceof FloatWritable) {
+      if (t.equals("Count")) {
+        ruleCount = ((IntWritable) fs.get(t)).get();
+        continue;
+      } else if (val instanceof FloatWritable) {
         float value = ((FloatWritable) fs.get(t)).get();
         if (value == -0.0 || Math.abs(value) < 0.000005)
           score = "0";
@@ -150,6 +157,13 @@ public class FormatUtils {
     }
     if (alignment != null)
       sb.append(DELIMITER + " ").append(alignment + " ");
+
+    if (ruleCount != 0) {
+      if (alignment == null)
+        sb.append(DELIMITER + "  ");
+
+      sb.append(DELIMITER + " ").append(ruleCount);
+    }
     return new Text(sb.substring(0, sb.length() - 1));
   }
 

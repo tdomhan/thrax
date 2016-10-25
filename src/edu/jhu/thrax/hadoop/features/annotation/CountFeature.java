@@ -38,7 +38,7 @@ public class CountFeature implements AnnotationFeature {
 
   @Override
   public Writable score(RuleWritable r, Annotation annotation) {
-    return new IntWritable(annotation.count());
+    return new IntWritable(annotation.count() + 1);
   }
 
   @Override

@@ -99,7 +99,12 @@ public class Thrax extends Configured implements Tool {
     String type = conf.get("thrax.type", "translation");
     String features = BackwardsCompatibility.equivalent(conf.get("thrax.features", ""));
 
+    // Always compute the count feature, which gets added to the end
+    if (conf.getBoolean("thrax.counts", false))
+      features += " count";
+
     System.err.println("Running in mode: " + type);
+    System.err.println("Features: " + features);
 
     scheduler.schedule(VocabularyJob.class);
 

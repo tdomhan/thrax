@@ -22,7 +22,8 @@ public class AnnotationFeatureFactory {
       return new SourceGivenTargetLexicalProbabilityFeature();
     else if (name.equals(TargetGivenSourceLexicalProbabilityFeature.NAME))
       return new TargetGivenSourceLexicalProbabilityFeature();
-    else if (name.equals(AlignmentFeature.NAME)) return new AlignmentFeature();
+    else if (name.equals(AlignmentFeature.NAME)) 
+      return new AlignmentFeature();
 
     return null;
   }
