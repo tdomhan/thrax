@@ -99,10 +99,6 @@ public class Thrax extends Configured implements Tool {
     String type = conf.get("thrax.type", "translation");
     String features = BackwardsCompatibility.equivalent(conf.get("thrax.features", ""));
 
-    // Always compute the count feature, which gets added to the end
-    if (conf.getBoolean("thrax.counts", false))
-      features += " count";
-
     System.err.println("Running in mode: " + type);
     System.err.println("Features: " + features);
 
@@ -179,7 +175,7 @@ public class Thrax extends Configured implements Tool {
     int returnCode = ToolRunner.run(null, new Thrax(), argv);
     System.exit(returnCode);
   }
-
+  
   protected synchronized void workerDone(Class<? extends ThraxJob> theClass, boolean success) {
     try {
       scheduler.setState(theClass, success ? JobState.SUCCESS : JobState.FAILED);
