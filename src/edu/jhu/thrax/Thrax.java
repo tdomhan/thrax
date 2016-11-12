@@ -100,6 +100,7 @@ public class Thrax extends Configured implements Tool {
     String features = BackwardsCompatibility.equivalent(conf.get("thrax.features", ""));
 
     System.err.println("Running in mode: " + type);
+    System.err.println("Features: " + features);
 
     scheduler.schedule(VocabularyJob.class);
 
@@ -174,7 +175,7 @@ public class Thrax extends Configured implements Tool {
     int returnCode = ToolRunner.run(null, new Thrax(), argv);
     System.exit(returnCode);
   }
-
+  
   protected synchronized void workerDone(Class<? extends ThraxJob> theClass, boolean success) {
     try {
       scheduler.setState(theClass, success ? JobState.SUCCESS : JobState.FAILED);

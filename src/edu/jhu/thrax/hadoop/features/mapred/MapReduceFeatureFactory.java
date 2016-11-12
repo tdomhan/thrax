@@ -3,6 +3,7 @@ package edu.jhu.thrax.hadoop.features.mapred;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.jhu.thrax.hadoop.features.annotation.CountFeature;
 import edu.jhu.thrax.util.FormatUtils;
 
 public class MapReduceFeatureFactory {
