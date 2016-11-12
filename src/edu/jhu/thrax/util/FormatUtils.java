@@ -126,7 +126,6 @@ public class FormatUtils {
 
     sb.append(DELIM);
     for (String t : fs.keySet()) {
-      System.err.println("WRITING FEATURE: " + t);
       String score;
       Writable val = fs.get(t);
       if (t.equals("Count")) {
@@ -159,10 +158,11 @@ public class FormatUtils {
       sb.append(DELIMITER + " ").append(alignment + " ");
 
     if (! ruleCount.equals("")) {
+      // If there was no alignment, output a blank
       if (alignment == null)
         sb.append(DELIMITER + "  ");
 
-      sb.append(DELIMITER + " ").append(ruleCount);
+      sb.append(DELIMITER + " ").append(ruleCount).append(" ");
     }
     return new Text(sb.substring(0, sb.length() - 1));
   }
