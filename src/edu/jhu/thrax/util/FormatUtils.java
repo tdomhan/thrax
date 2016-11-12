@@ -102,7 +102,7 @@ public class FormatUtils {
     
     // Both alignment and count are features that are handled specially
     String alignment = null;    
-    int ruleCount = 0;
+    String ruleCount = "";
     StringBuilder sb = new StringBuilder();
     sb.append(Vocabulary.word(r.lhs));
     sb.append(DELIM);
@@ -130,7 +130,7 @@ public class FormatUtils {
       String score;
       Writable val = fs.get(t);
       if (t.equals("Count")) {
-        ruleCount = ((IntWritable) fs.get(t)).get();
+        ruleCount = String.format("%d", ((IntWritable) fs.get(t)).get());
         continue;
       } else if (val instanceof FloatWritable) {
         float value = ((FloatWritable) fs.get(t)).get();
@@ -158,7 +158,7 @@ public class FormatUtils {
     if (alignment != null)
       sb.append(DELIMITER + " ").append(alignment + " ");
 
-    if (ruleCount != 0) {
+    if (! ruleCount.equals("")) {
       if (alignment == null)
         sb.append(DELIMITER + "  ");
 
