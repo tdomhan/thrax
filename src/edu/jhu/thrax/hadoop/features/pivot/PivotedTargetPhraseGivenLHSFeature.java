@@ -11,14 +11,9 @@ import edu.jhu.thrax.hadoop.features.mapred.TargetPhraseGivenLHSFeature;
 public class PivotedTargetPhraseGivenLHSFeature extends NonAggregatingPivotedFeature {
 
   public static final String NAME = TargetPhraseGivenLHSFeature.NAME;
-  public static final String LABEL = TargetPhraseGivenLHSFeature.LABEL;
 
   public String getName() {
     return NAME;
-  }
-
-  public String getLabel() {
-    return LABEL;
   }
 
   public Set<String> getPrerequisites() {
@@ -28,13 +23,13 @@ public class PivotedTargetPhraseGivenLHSFeature extends NonAggregatingPivotedFea
   }
 
   public FloatWritable pivot(FeatureMap src, FeatureMap tgt) {
-    return new FloatWritable(((FloatWritable) tgt.get(TargetPhraseGivenLHSFeature.LABEL)).get());
+    return new FloatWritable(((FloatWritable) tgt.get(TargetPhraseGivenLHSFeature.NAME)).get());
   }
 
   @Override
   public Set<String> getLowerBoundLabels() {
     Set<String> lower_bound_labels = new HashSet<String>();
-    lower_bound_labels.add(TargetPhraseGivenLHSFeature.LABEL);
+    lower_bound_labels.add(TargetPhraseGivenLHSFeature.NAME);
     return lower_bound_labels;
   }
 

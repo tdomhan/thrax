@@ -85,15 +85,15 @@ public class AggregationReducer extends Reducer<RuleWritable, FeatureMap, Text, 
       }
     }
     for (PivotedFeature feature : pivotedFeatures)
-      features.put(feature.getLabel(), feature.finalizeAggregation());
+      features.put(feature.getName(), feature.finalizeAggregation());
 
     for (SimpleFeature feature : simpleFeatures)
-      features.put(feature.getLabel(), feature.score(rule));
+      features.put(feature.getName(), feature.score(rule));
 
     for (AnnotationFeature feature : annotationFeatures)
-      features.put(feature.getLabel(),
-          feature.score(rule, (Annotation) features.get(AnnotationPassthroughFeature.LABEL)));
-    features.remove(AnnotationPassthroughFeature.LABEL);
+      features.put(feature.getName(),
+          feature.score(rule, (Annotation) features.get(AnnotationPassthroughFeature.NAME)));
+    features.remove(AnnotationPassthroughFeature.NAME);
 
     context.write(FormatUtils.ruleToText(rule, features, label, sparse), NullWritable.get());
   }

@@ -14,7 +14,6 @@ import edu.jhu.thrax.util.Vocabulary;
 public class PivotedRarityPenaltyFeature implements PivotedFeature {
 
   public static final String NAME = RarityPenaltyFeature.NAME;
-  public static final String LABEL = RarityPenaltyFeature.LABEL;
 
   private static final FloatWritable ZERO = new FloatWritable(0.0f);
 
@@ -26,10 +25,6 @@ public class PivotedRarityPenaltyFeature implements PivotedFeature {
     return NAME;
   }
 
-  public String getLabel() {
-    return LABEL;
-  }
-
   public Set<String> getPrerequisites() {
     Set<String> prereqs = new HashSet<String>();
     prereqs.add(RarityPenaltyFeature.NAME);
@@ -37,17 +32,17 @@ public class PivotedRarityPenaltyFeature implements PivotedFeature {
   }
 
   public FloatWritable pivot(FeatureMap a, FeatureMap b) {
-    float a_rp = ((FloatWritable) a.get(RarityPenaltyFeature.LABEL)).get();
-    float b_rp = ((FloatWritable) b.get(RarityPenaltyFeature.LABEL)).get();
+    float a_rp = ((FloatWritable) a.get(RarityPenaltyFeature.NAME)).get();
+    float b_rp = ((FloatWritable) b.get(RarityPenaltyFeature.NAME)).get();
     return new FloatWritable(Math.max(a_rp, b_rp));
   }
 
   public void unaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   public void binaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   public void initializeAggregation() {
@@ -55,7 +50,7 @@ public class PivotedRarityPenaltyFeature implements PivotedFeature {
   }
 
   public void aggregate(FeatureMap a) {
-    float rp = ((FloatWritable) a.get(LABEL)).get();
+    float rp = ((FloatWritable) a.get(NAME)).get();
     if (aggregated_rp == -1) {
       aggregated_rp = rp;
     } else {
@@ -73,7 +68,7 @@ public class PivotedRarityPenaltyFeature implements PivotedFeature {
   @Override
   public Set<String> getLowerBoundLabels() {
     Set<String> lower_bound_labels = new HashSet<String>();
-    lower_bound_labels.add(RarityPenaltyFeature.LABEL);
+    lower_bound_labels.add(RarityPenaltyFeature.NAME);
     return lower_bound_labels;
   }
 

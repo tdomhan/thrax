@@ -12,14 +12,9 @@ import edu.jhu.thrax.hadoop.features.annotation.TargetGivenSourceLexicalProbabil
 public class PivotedLexicalTargetGivenSourceFeature extends PivotedNegLogProbFeature {
 
   public static final String NAME = TargetGivenSourceLexicalProbabilityFeature.NAME;
-  public static final String LABEL = TargetGivenSourceLexicalProbabilityFeature.LABEL;
 
   public String getName() {
     return NAME;
-  }
-
-  public String getLabel() {
-    return LABEL;
   }
 
   public Set<String> getPrerequisites() {
@@ -30,8 +25,8 @@ public class PivotedLexicalTargetGivenSourceFeature extends PivotedNegLogProbFea
   }
 
   public FloatWritable pivot(FeatureMap src, FeatureMap tgt) {
-    float egf = ((FloatWritable) src.get(TargetGivenSourceLexicalProbabilityFeature.LABEL)).get();
-    float fge = ((FloatWritable) tgt.get(SourceGivenTargetLexicalProbabilityFeature.LABEL)).get();
+    float egf = ((FloatWritable) src.get(TargetGivenSourceLexicalProbabilityFeature.NAME)).get();
+    float fge = ((FloatWritable) tgt.get(SourceGivenTargetLexicalProbabilityFeature.NAME)).get();
 
     return new FloatWritable(egf + fge);
   }
@@ -39,8 +34,8 @@ public class PivotedLexicalTargetGivenSourceFeature extends PivotedNegLogProbFea
   @Override
   public Set<String> getLowerBoundLabels() {
     Set<String> lower_bound_labels = new HashSet<String>();
-    lower_bound_labels.add(TargetGivenSourceLexicalProbabilityFeature.LABEL);
-    lower_bound_labels.add(SourceGivenTargetLexicalProbabilityFeature.LABEL);
+    lower_bound_labels.add(TargetGivenSourceLexicalProbabilityFeature.NAME);
+    lower_bound_labels.add(SourceGivenTargetLexicalProbabilityFeature.NAME);
     return lower_bound_labels;
   }
 

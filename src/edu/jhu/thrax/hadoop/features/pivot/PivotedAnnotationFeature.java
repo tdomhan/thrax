@@ -15,16 +15,11 @@ import edu.jhu.thrax.hadoop.features.annotation.AnnotationPassthroughFeature;
 public class PivotedAnnotationFeature implements PivotedFeature {
 
   public static final String NAME = "annotation"; 
-  public static final String LABEL = AnnotationPassthroughFeature.LABEL;
   
   private Annotation aggregated = null;
 
   public String getName() {
     return NAME;
-  }
-
-  public String getLabel() {
-    return LABEL;
   }
 
   public Set<String> getPrerequisites() {
@@ -34,8 +29,8 @@ public class PivotedAnnotationFeature implements PivotedFeature {
   }
 
   public Annotation pivot(FeatureMap src, FeatureMap tgt) {
-    AlignmentWritable src_f2e = ((AlignmentWritable) src.get(AlignmentFeature.LABEL));
-    AlignmentWritable tgt_f2e = ((AlignmentWritable) tgt.get(AlignmentFeature.LABEL));
+    AlignmentWritable src_f2e = ((AlignmentWritable) src.get(AlignmentFeature.NAME));
+    AlignmentWritable tgt_f2e = ((AlignmentWritable) tgt.get(AlignmentFeature.NAME));
 
     return new Annotation(src_f2e.join(tgt_f2e));
   }
@@ -49,7 +44,7 @@ public class PivotedAnnotationFeature implements PivotedFeature {
   }
 
   public void aggregate(FeatureMap a) {
-    Annotation annotation = (Annotation) a.get(AnnotationPassthroughFeature.LABEL);
+    Annotation annotation = (Annotation) a.get(AnnotationPassthroughFeature.NAME);
     if (aggregated == null) {
       aggregated = new Annotation(annotation);
     } else {

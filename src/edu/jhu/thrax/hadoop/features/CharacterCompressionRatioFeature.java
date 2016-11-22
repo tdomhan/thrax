@@ -12,8 +12,7 @@ public class CharacterCompressionRatioFeature implements SimpleFeature {
 
   private static final FloatWritable ZERO = new FloatWritable(0f);
 
-  public static final String NAME = "char-cr";
-  public static final String LABEL = "CharLogCR";
+  public static final String NAME = "char_cr";
   
   public Writable score(RuleWritable r) {
     int src_length = 0;
@@ -42,15 +41,11 @@ public class CharacterCompressionRatioFeature implements SimpleFeature {
     return NAME;
   }
 
-  public String getLabel() {
-    return LABEL;
-  }
-
   public void unaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   public void binaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 }

@@ -22,7 +22,6 @@ import edu.jhu.thrax.util.Vocabulary;
 public class SourceGivenTargetLexicalProbabilityFeature implements AnnotationFeature {
 
   public static final String NAME = "f_given_e_lex";
-  public static final String LABEL = "Lex(f|e)";
   
   private static final float DEFAULT_PROB = 10e-7f;
   
@@ -30,10 +29,6 @@ public class SourceGivenTargetLexicalProbabilityFeature implements AnnotationFea
   
   public String getName() {
     return NAME;
-  }
-  
-  public String getLabel() {
-    return LABEL;
   }
 
   public void init(Context context) throws IOException, InterruptedException {
@@ -108,10 +103,10 @@ public class SourceGivenTargetLexicalProbabilityFeature implements AnnotationFea
   private static final FloatWritable ONE_PROB = new FloatWritable(0.0f);
 
   public void unaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ONE_PROB);
+    map.put(Vocabulary.id(NAME), ONE_PROB);
   }
 
   public void binaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ONE_PROB);
+    map.put(Vocabulary.id(NAME), ONE_PROB);
   }
 }

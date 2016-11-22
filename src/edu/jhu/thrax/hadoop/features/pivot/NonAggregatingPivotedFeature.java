@@ -19,7 +19,7 @@ public abstract class NonAggregatingPivotedFeature implements PivotedFeature {
   }
 
   public void aggregate(FeatureMap features) {
-    FloatWritable val = (FloatWritable) features.get(getLabel());
+    FloatWritable val = (FloatWritable) features.get(getName());
     if (value == Float.MAX_VALUE) {
       value = val.get();
     } else {
@@ -35,10 +35,10 @@ public abstract class NonAggregatingPivotedFeature implements PivotedFeature {
   }
 
   public void unaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(getLabel()), ZERO);
+    map.put(Vocabulary.id(getName()), ZERO);
   }
 
   public void binaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(getLabel()), ZERO);
+    map.put(Vocabulary.id(getName()), ZERO);
   }
 }
