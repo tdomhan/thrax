@@ -128,7 +128,7 @@ public class FormatUtils {
     for (String t : fs.keySet()) {
       String score;
       Writable val = fs.get(t);
-      if (t.equals("Count")) {
+      if (t.toLowerCase().equals("count")) {
         ruleCount = String.format("%d", ((IntWritable) fs.get(t)).get());
         continue;
       } else if (val instanceof FloatWritable) {
