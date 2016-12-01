@@ -20,7 +20,7 @@ public abstract class PivotedNegLogProbFeature implements PivotedFeature {
   }
 
   public void aggregate(FeatureMap features) {
-    FloatWritable val = (FloatWritable) features.get(getLabel());
+    FloatWritable val = (FloatWritable) features.get(getName());
     aggregated = NegLogMath.logAdd(aggregated, val.get());
   }
 
@@ -29,10 +29,10 @@ public abstract class PivotedNegLogProbFeature implements PivotedFeature {
   }
 
   public void unaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(getLabel()), ONE_PROB);
+    map.put(Vocabulary.id(getName()), ONE_PROB);
   }
 
   public void binaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(getLabel()), ONE_PROB);
+    map.put(Vocabulary.id(getName()), ONE_PROB);
   }
 }

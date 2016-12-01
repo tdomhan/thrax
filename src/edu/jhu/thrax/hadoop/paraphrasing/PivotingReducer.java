@@ -98,9 +98,9 @@ public class PivotingReducer extends Reducer<RuleWritable, FeatureMap, RuleWrita
       seen_first = true;
 
       Annotation annotation =
-          (Annotation) features.get(AnnotationPassthroughFeature.LABEL);
+          (Annotation) features.get(AnnotationPassthroughFeature.NAME);
       for (AnnotationFeature f : annotationFeatures)
-        features.put(f.getLabel(), f.score(key, annotation));
+        features.put(f.getName(), f.score(key, annotation));
 
       if (!prune(features, translationPruningRules))
         targets.add(new ParaphrasePattern(key.target, nts, lhs, key.monotone, features));
@@ -138,7 +138,7 @@ public class PivotingReducer extends Reducer<RuleWritable, FeatureMap, RuleWrita
     try {
       // Compute the features.
       for (PivotedFeature f : pivotedFeatures)
-        pivoted_features.put(f.getLabel(), f.pivot(src.features, tgt.features));
+        pivoted_features.put(f.getName(), f.pivot(src.features, tgt.features));
     } catch (Exception e) {
       StringBuilder src_f = new StringBuilder();
       for (int w : src.features.keySet())
@@ -177,7 +177,7 @@ public class PivotingReducer extends Reducer<RuleWritable, FeatureMap, RuleWrita
       } else {
         continue;
       }
-      int label = Vocabulary.id(PivotedFeatureFactory.get(f[0]).getLabel());
+      int label = Vocabulary.id(PivotedFeatureFactory.get(f[0]).getName());
       rules.put(label, new PruningRule(smaller, Float.parseFloat(f[1])));
     }
     return rules;

@@ -10,8 +10,7 @@ import edu.jhu.thrax.util.Vocabulary;
 
 public class SourceWordCounterFeature implements SimpleFeature {
 
-  public static final String NAME = "source-word-count";
-  private static final String LABEL = "SourceWords";
+  public static final String NAME = "source_word_count";
 
   private static final IntWritable ZERO = new IntWritable(0);
 
@@ -26,15 +25,11 @@ public class SourceWordCounterFeature implements SimpleFeature {
     return NAME;
   }
 
-  public String getLabel() {
-    return LABEL;
-  }
-
   public void unaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   public void binaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 }

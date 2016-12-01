@@ -63,7 +63,7 @@ public class AggregationCombiner
       }
     }
     for (PivotedFeature feature : pivotedFeatures)
-      merged.put(feature.getLabel(), feature.finalizeAggregation());
+      merged.put(feature.getName(), feature.finalizeAggregation());
     context.write(key, merged);
   }
 }

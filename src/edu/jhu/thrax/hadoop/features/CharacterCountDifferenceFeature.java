@@ -12,8 +12,7 @@ public class CharacterCountDifferenceFeature implements SimpleFeature {
 
   private static final IntWritable ZERO = new IntWritable(0);
 
-  public static final String NAME = "char-count-difference";
-  public static final String LABEL = "CharCountDiff";
+  public static final String NAME = "char_count_difference";
   
   public Writable score(RuleWritable r) {
     int char_difference = 0;
@@ -37,15 +36,11 @@ public class CharacterCountDifferenceFeature implements SimpleFeature {
     return NAME;
   }
 
-  public String getLabel() {
-    return LABEL;
-  }
-
   public void unaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   public void binaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 }

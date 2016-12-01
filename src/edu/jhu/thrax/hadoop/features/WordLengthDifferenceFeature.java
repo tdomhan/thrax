@@ -10,8 +10,7 @@ import edu.jhu.thrax.util.Vocabulary;
 
 public class WordLengthDifferenceFeature implements SimpleFeature {
 
-  public static final String NAME = "word-length-difference";
-  public static final String LABEL = "WordLenDiff";
+  public static final String NAME = "word_length_difference";
 
   private static final FloatWritable ZERO = new FloatWritable(0);
 
@@ -45,15 +44,11 @@ public class WordLengthDifferenceFeature implements SimpleFeature {
     return NAME;
   }
 
-  public String getLabel() {
-    return LABEL;
-  }
-
   public void unaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   public void binaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 }

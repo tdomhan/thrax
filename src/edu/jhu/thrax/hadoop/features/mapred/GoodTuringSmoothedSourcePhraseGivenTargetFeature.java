@@ -29,14 +29,9 @@ import edu.jhu.thrax.util.Vocabulary;
 public class GoodTuringSmoothedSourcePhraseGivenTargetFeature extends MapReduceFeature {
 
   public static final String NAME = "f_given_e_phrase_gt_smoothed";
-  public static final String LABEL = "p_gt(f|e)";
 
   public String getName() {
     return NAME;
-  }
-
-  public String getLabel() {
-    return LABEL;
   }
   
   @Override
@@ -101,7 +96,7 @@ public class GoodTuringSmoothedSourcePhraseGivenTargetFeature extends MapReduceF
         prob = new FloatWritable((float) -Math.log(smoothedCount / (float) marginal));
         return;
       }
-      context.write(key, new FeaturePair(Vocabulary.id(LABEL), prob));
+      context.write(key, new FeaturePair(Vocabulary.id(NAME), prob));
     }
 
   }
@@ -109,10 +104,10 @@ public class GoodTuringSmoothedSourcePhraseGivenTargetFeature extends MapReduceF
   private static final FloatWritable ZERO = new FloatWritable(0.0f);
 
   public void unaryGlueRuleScore(int nt, java.util.Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   public void binaryGlueRuleScore(int nt, java.util.Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 }

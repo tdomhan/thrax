@@ -10,8 +10,7 @@ import edu.jhu.thrax.util.Vocabulary;
 
 public class GlueRuleFeature implements SimpleFeature {
 
-  public static final String NAME = "glue-rule";
-  public static final String LABEL = "GlueRule";
+  public static final String NAME = "glue_rule";
   
   private static final IntWritable ZERO = new IntWritable(0);
   private static final IntWritable ONE = new IntWritable(1);
@@ -24,15 +23,11 @@ public class GlueRuleFeature implements SimpleFeature {
     return NAME;
   }
 
-  public String getLabel() {
-    return LABEL;
-  }
-
   public void unaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ONE);
+    map.put(Vocabulary.id(NAME), ONE);
   }
 
   public void binaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ONE);
+    map.put(Vocabulary.id(NAME), ONE);
   }
 }

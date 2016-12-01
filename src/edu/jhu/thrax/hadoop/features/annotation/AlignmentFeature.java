@@ -18,16 +18,11 @@ import edu.jhu.thrax.util.Vocabulary;
 public class AlignmentFeature implements AnnotationFeature {
   
   public static final String NAME = "alignment";
-  public static final String LABEL = "Alignment";
   
   private static final IntWritable ZERO = new IntWritable(0);
 
   public String getName() {
     return NAME;
-  }
-  
-  public String getLabel() {
-    return LABEL;
   }
 
   public AlignmentWritable score(RuleWritable r, Annotation annotation) {
@@ -35,11 +30,11 @@ public class AlignmentFeature implements AnnotationFeature {
   }
 
   public void unaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   public void binaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   @Override

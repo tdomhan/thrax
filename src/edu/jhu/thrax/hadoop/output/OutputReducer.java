@@ -44,7 +44,7 @@ public class OutputReducer extends Reducer<RuleWritable, FeaturePair, Text, Null
     for (FeaturePair fp : values)
       features.put(Vocabulary.word(fp.key), fp.val.get());
     for (SimpleFeature feature : simpleFeatures)
-      features.put(feature.getLabel(), feature.score(key));
+      features.put(feature.getName(), feature.score(key));
     context.write(FormatUtils.ruleToText(key, features, label, sparse), NullWritable.get());
   }
 }

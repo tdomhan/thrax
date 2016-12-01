@@ -16,7 +16,6 @@ import edu.jhu.thrax.util.Vocabulary;
 public class CountFeature implements AnnotationFeature {
 
   public static final String NAME = "count";
-  public static final String LABEL = "Count";
   
   private static final IntWritable ZERO = new IntWritable(0);
 
@@ -24,16 +23,12 @@ public class CountFeature implements AnnotationFeature {
     return NAME;
   }
   
-  public String getLabel() {
-    return LABEL;
-  }
-  
   public void unaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   public void binaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   @Override

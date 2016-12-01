@@ -25,14 +25,9 @@ import edu.jhu.thrax.util.Vocabulary;
 public class SourcePhraseGivenTargetandLHSFeature extends MapReduceFeature {
 
   public static final String NAME = "f_given_e_and_lhs";
-  public static final String LABEL = "p(f|e,LHS)";
 
   public String getName() {
     return NAME;
-  }
-
-  public String getLabel() {
-    return LABEL;
   }
 
   public Class<? extends WritableComparator> sortComparatorClass() {
@@ -89,7 +84,7 @@ public class SourcePhraseGivenTargetandLHSFeature extends MapReduceFeature {
         count += x.get();
       }
       FloatWritable prob = new FloatWritable((float) -Math.log(count / (float) marginal));
-      context.write(key, new FeaturePair(Vocabulary.id(LABEL), prob));
+      context.write(key, new FeaturePair(Vocabulary.id(NAME), prob));
     }
   }
 
@@ -138,10 +133,10 @@ public class SourcePhraseGivenTargetandLHSFeature extends MapReduceFeature {
   private static final FloatWritable ZERO = new FloatWritable(0.0f);
 
   public void unaryGlueRuleScore(int nt, java.util.Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   public void binaryGlueRuleScore(int nt, java.util.Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 }

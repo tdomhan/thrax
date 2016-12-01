@@ -11,7 +11,6 @@ import edu.jhu.thrax.util.Vocabulary;
 public class AdjacentNonTerminalsFeature implements SimpleFeature {
 
   public static final String NAME = "adjacent";
-  public static final String LABEL = "Adjacent";
 
   private static final IntWritable ZERO = new IntWritable(0);
   private static final IntWritable ONE = new IntWritable(1);
@@ -33,15 +32,11 @@ public class AdjacentNonTerminalsFeature implements SimpleFeature {
     return NAME;
   }
 
-  public String getLabel() {
-    return LABEL;
-  }
-
   public void unaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   public void binaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ONE);
+    map.put(Vocabulary.id(NAME), ONE);
   }
 }

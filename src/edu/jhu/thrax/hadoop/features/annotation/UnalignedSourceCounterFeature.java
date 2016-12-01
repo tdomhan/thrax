@@ -16,17 +16,12 @@ import edu.jhu.thrax.util.Vocabulary;
 @SuppressWarnings("rawtypes")
 public class UnalignedSourceCounterFeature implements AnnotationFeature {
   
-  public static final String NAME = "unaligned-source";
-  public static final String LABEL = "UnalignedSource";
+  public static final String NAME = "unaligned_source";
   
   private static final IntWritable ZERO = new IntWritable(0);
 
   public String getName() {
     return NAME;
-  }
-  
-  public String getLabel() {
-    return LABEL;
   }
 
   public IntWritable score(RuleWritable r, Annotation annotation) {
@@ -45,11 +40,11 @@ public class UnalignedSourceCounterFeature implements AnnotationFeature {
   }
 
   public void unaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   public void binaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   @Override

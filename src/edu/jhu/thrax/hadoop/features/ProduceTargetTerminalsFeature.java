@@ -10,8 +10,7 @@ import edu.jhu.thrax.util.Vocabulary;
 
 public class ProduceTargetTerminalsFeature implements SimpleFeature {
 
-  public static final String NAME = "target-terminals-without-source";
-  public static final String LABEL = "TargetTerminalsButNoSource";
+  public static final String NAME = "target_terminals_without_source";
 
   private static final IntWritable ZERO = new IntWritable(0);
   private static final IntWritable ONE = new IntWritable(1);
@@ -28,15 +27,11 @@ public class ProduceTargetTerminalsFeature implements SimpleFeature {
     return NAME;
   }
 
-  public String getLabel() {
-    return LABEL;
-  }
-
   public void unaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   public void binaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 }

@@ -25,14 +25,9 @@ public class LhsGivenSourcePhraseFeature extends MapReduceFeature {
 
   
   public static final String NAME = "lhs_given_f";
-  public static final String LABEL = "p(LHS|f)";
   
   public String getName() {
     return NAME;
-  }
-  
-  public String getLabel() {
-    return LABEL;
   }
   
   public Class<? extends WritableComparator> sortComparatorClass() {
@@ -104,7 +99,7 @@ public class LhsGivenSourcePhraseFeature extends MapReduceFeature {
         prob = new FloatWritable((float) -Math.log(count / (float) marginal));
         return;
       }
-      context.write(key, new FeaturePair(Vocabulary.id(LABEL), prob));
+      context.write(key, new FeaturePair(Vocabulary.id(NAME), prob));
     }
 
   }
@@ -145,10 +140,10 @@ public class LhsGivenSourcePhraseFeature extends MapReduceFeature {
   private static final FloatWritable ZERO = new FloatWritable(0.0f);
 
   public void unaryGlueRuleScore(int nt, java.util.Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   public void binaryGlueRuleScore(int nt, java.util.Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 }

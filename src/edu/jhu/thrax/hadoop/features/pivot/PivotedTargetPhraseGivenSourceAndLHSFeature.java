@@ -12,14 +12,9 @@ import edu.jhu.thrax.hadoop.features.mapred.TargetPhraseGivenSourceandLHSFeature
 public class PivotedTargetPhraseGivenSourceAndLHSFeature extends PivotedNegLogProbFeature {
 
   public static final String NAME = TargetPhraseGivenSourceandLHSFeature.NAME;
-  public static final String LABEL = TargetPhraseGivenSourceandLHSFeature.LABEL;
 
   public String getName() {
     return NAME;
-  }
-
-  public String getLabel() {
-    return LABEL;
   }
 
   public Set<String> getPrerequisites() {
@@ -30,8 +25,8 @@ public class PivotedTargetPhraseGivenSourceAndLHSFeature extends PivotedNegLogPr
   }
 
   public FloatWritable pivot(FeatureMap src, FeatureMap tgt) {
-    float fge = ((FloatWritable) tgt.get(TargetPhraseGivenSourceandLHSFeature.LABEL)).get();
-    float egf = ((FloatWritable) src.get(SourcePhraseGivenTargetandLHSFeature.LABEL)).get();
+    float fge = ((FloatWritable) tgt.get(TargetPhraseGivenSourceandLHSFeature.NAME)).get();
+    float egf = ((FloatWritable) src.get(SourcePhraseGivenTargetandLHSFeature.NAME)).get();
 
     return new FloatWritable(egf + fge);
   }
@@ -39,8 +34,8 @@ public class PivotedTargetPhraseGivenSourceAndLHSFeature extends PivotedNegLogPr
   @Override
   public Set<String> getLowerBoundLabels() {
     Set<String> lower_bound_labels = new HashSet<String>();
-    lower_bound_labels.add(TargetPhraseGivenSourceandLHSFeature.LABEL);
-    lower_bound_labels.add(SourcePhraseGivenTargetandLHSFeature.LABEL);
+    lower_bound_labels.add(TargetPhraseGivenSourceandLHSFeature.NAME);
+    lower_bound_labels.add(SourcePhraseGivenTargetandLHSFeature.NAME);
     return lower_bound_labels;
   }
 

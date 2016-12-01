@@ -10,8 +10,7 @@ import edu.jhu.thrax.util.Vocabulary;
 
 public class PhrasePenaltyFeature implements SimpleFeature {
 
-  public static final String NAME = "phrase-penalty";
-  public static final String LABEL = "PhrasePenalty";
+  public static final String NAME = "phrase_penalty";
 
   private static final IntWritable ONE = new IntWritable(1);
 
@@ -23,15 +22,11 @@ public class PhrasePenaltyFeature implements SimpleFeature {
     return NAME;
   }
 
-  public String getLabel() {
-    return LABEL;
-  }
-
   public void unaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ONE);
+    map.put(Vocabulary.id(NAME), ONE);
   }
 
   public void binaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ONE);
+    map.put(Vocabulary.id(NAME), ONE);
   }
 }

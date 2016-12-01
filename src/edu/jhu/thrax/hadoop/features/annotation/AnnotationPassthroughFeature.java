@@ -15,14 +15,9 @@ import edu.jhu.thrax.hadoop.jobs.ThraxJob;
 public class AnnotationPassthroughFeature implements AnnotationFeature {
   
   public static final String NAME = "annotation";
-  public static final String LABEL = "Annotation";
 
   public String getName() {
     return NAME;
-  }
-  
-  public String getLabel() {
-    return LABEL;
   }
 
   public Annotation score(RuleWritable r, Annotation annotation) {

@@ -60,7 +60,7 @@ public class FeatureMap implements Writable {
       int key = 0;
       Writable val = null;
       key = WritableUtils.readVInt(in);
-      if (key == Vocabulary.id(AnnotationPassthroughFeature.LABEL)) {
+      if (key == Vocabulary.id(AnnotationPassthroughFeature.NAME)) {
         val = new Annotation();
         val.readFields(in);
       } else {
@@ -76,7 +76,7 @@ public class FeatureMap implements Writable {
     WritableUtils.writeVInt(out, map.size());
     for (int key : map.keySet()) {
       WritableUtils.writeVInt(out, key);
-      if (key == Vocabulary.id(AnnotationPassthroughFeature.LABEL)) {
+      if (key == Vocabulary.id(AnnotationPassthroughFeature.NAME)) {
         ((Annotation) this.get(key)).write(out);
       } else {
         ((FloatWritable) this.get(key)).write(out);

@@ -16,7 +16,6 @@ import edu.jhu.thrax.util.Vocabulary;
 public class LogCountFeature implements AnnotationFeature {
 
   public static final String NAME = "logcount";
-  public static final String LABEL = "LogCount";
 
   private static final FloatWritable ZERO = new FloatWritable(0);
 
@@ -24,16 +23,12 @@ public class LogCountFeature implements AnnotationFeature {
     return NAME;
   }
 
-  public String getLabel() {
-    return LABEL;
-  }
-
   public void unaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   public void binaryGlueRuleScore(int nt, Map<Integer, Writable> map) {
-    map.put(Vocabulary.id(LABEL), ZERO);
+    map.put(Vocabulary.id(NAME), ZERO);
   }
 
   @Override

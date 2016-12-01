@@ -114,33 +114,33 @@ public class Vocabulary {
       String features = BackwardsCompatibility.equivalent(conf.get("thrax.features", ""));
       if ("translation".equals(type)) {
         for (MapReduceFeature f : MapReduceFeatureFactory.getAll(features))
-          id(f.getLabel());
+          id(f.getName());
       } else if ("paraphrasing".equals(type)) {
         Set<String> prereq_features = new HashSet<String>();
         for (PivotedFeature f : PivotedFeatureFactory.getAll(features)) {
           prereq_features.addAll(f.getPrerequisites());
-          id(f.getLabel());
+          id(f.getName());
         }
-        id((new PivotedAnnotationFeature()).getLabel());
+        id((new PivotedAnnotationFeature()).getName());
         for (String prereq : prereq_features) {
           MapReduceFeature mf = MapReduceFeatureFactory.get(prereq);
           if (mf != null) {
-            id(mf.getLabel());
+            id(mf.getName());
           } else {
             AnnotationFeature af = AnnotationFeatureFactory.get(prereq);
             if (af != null) {
-              id(af.getLabel());
+              id(af.getName());
             } else {
               SimpleFeature sf = SimpleFeatureFactory.get(prereq);
-              if (sf != null) id(sf.getLabel());
+              if (sf != null) id(sf.getName());
             }
           }
         }
       }
       for (AnnotationFeature f : AnnotationFeatureFactory.getAll(features))
-        id(f.getLabel());
+        id(f.getName());
       for (SimpleFeature f : SimpleFeatureFactory.getAll(features))
-        id(f.getLabel());
+        id(f.getName());
       head = size();      
       return true;
     }

@@ -43,7 +43,7 @@ public class AnnotationReducer extends Reducer<RuleWritable, Annotation, RuleWri
       throws IOException, InterruptedException {
     for (Annotation annotation : values) {
       for (AnnotationFeature f : annotationFeatures) {
-        context.write(key, new FeaturePair(Vocabulary.id(f.getLabel()), f.score(key, annotation)));
+        context.write(key, new FeaturePair(Vocabulary.id(f.getName()), f.score(key, annotation)));
       }
     }
   }
